@@ -15,7 +15,7 @@ This project allows you to stop a live broadcast using a REST API. It makes a PO
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/broadcast-stopper.git
+    git clone git@github.com:sky-lester/broadcast-stopper.git
     cd broadcast-stopper
     ```
 
