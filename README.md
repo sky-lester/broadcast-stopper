@@ -28,7 +28,7 @@ This project allows you to stop a live broadcast using a REST API. It makes a PO
 3. Create a `.env` file by copying the example file:
 
     ```bash
-    cp .env.example .env
+    cp .env-example .env
     ```
 
 4. Fill in the necessary data in the `.env` file (e.g., token and other required variables).
