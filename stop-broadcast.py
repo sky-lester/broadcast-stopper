@@ -4,6 +4,8 @@ import string
 import datetime
 import os
 from dotenv import load_dotenv
+import requests
+import argparse
 
 load_dotenv()
 
@@ -23,5 +25,24 @@ def generate_token(payload=None):
     token = jwt.encode(payload, secret, algorithm='HS256')
     return token
 
-token = generate_token()
-print(f'Bearer {token}')
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="Stop a broadcast")
+    parser.add_argument('user_id', type=str, help='User ID for the broadcast')
+    args = parser.parse_args()
+
+def stop_streamer():
+    parse_arguments()
+    url = os.getenv("WEBRTC_URL")
+    token = generate_token()
+    headers = {
+        'Authorization': token
+    }
+
+    response = requests.post(url, headers=headers)
+
+    if response.status_code == 200:
+        print('Broadcast stopped successfully!')
+    else:
+        print(f'Failed to stop the broadcast: {response.status_code}, {response.text}')
+
+stop_streamer()
