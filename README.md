@@ -9,6 +9,7 @@ This project allows you to stop a live broadcast using a REST API. It makes a PO
 ## Requirements
 
 - Python 3.x
+- `pyenv` and `pyenv-virtualenv` (optional, if using a virtual environment)
 
 ## Installation
 
@@ -19,19 +20,33 @@ This project allows you to stop a live broadcast using a REST API. It makes a PO
     cd broadcast-stopper
     ```
 
-2. Install the required dependencies:
+2. (Optional) Set up a Python virtual environment using `pyenv` and `pyenv-virtualenv`:
+
+    - Ensure you have `pyenv` and `pyenv-virtualenv` installed. You can follow the installation instructions [here](https://github.com/pyenv/pyenv#installation).
+
+    - Create and activate a new virtual environment for this project:
+
+      ```bash
+      pyenv install 3.12.4  # (Replace with your desired Python version)
+      pyenv virtualenv 3.12.4 broadcast_stopper_env
+      pyenv local broadcast_stopper_env
+      ```
+
+    - Once activated, you'll see `(broadcast_stopper_env)` before the command prompt in your terminal.
+
+3. Install the required dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Create a `.env` file by copying the example file:
+4. Create a `.env` file by copying the example file:
 
     ```bash
     cp .env-example .env
     ```
 
-4. Fill in the necessary data in the `.env` file (e.g., token and other required variables).
+5. Fill in the necessary data in the `.env` file (e.g., token and other required variables).
 
 ## Usage
 
