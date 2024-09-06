@@ -20,7 +20,7 @@ def generate_token(payload=None):
             'iat': random.randint(0, 9999),
             'nbf': random.randint(0, 9999),
         }
-    payload['exp'] = datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+    payload['exp'] = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=5)
     secret = os.getenv("JWT_SECRET")
     token = jwt.encode(payload, secret, algorithm='HS256')
     return token
@@ -28,17 +28,17 @@ def generate_token(payload=None):
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Stop a broadcast")
     parser.add_argument('user_id', type=str, help='User ID for the broadcast')
-    args = parser.parse_args()
+    return parser.parse_args()
 
 def stop_streamer():
-    parse_arguments()
+    args = parse_arguments()
     url = os.getenv("WEBRTC_URL")
     token = generate_token()
     headers = {
         'Authorization': token
     }
 
-    response = requests.post(url, headers=headers)
+    response = requests.post(f'{url}/{args.user_id}/stop', headers=headers)
 
     if response.status_code == 200:
         print('Broadcast stopped successfully!')
